@@ -5,7 +5,12 @@
     <li><%= q.ask %></li>
       <% q.responses.each do |r| %>
         <ul>
-          <li><%= r.answer %> | <%= link_to 'Best Answer', question_response_path(q, r, response: {best: true}), data: {method: "patch"}, id: "response-id-#{r.id}"   %></li>
+          <li><%= r.answer %> |
+            <% unless r.best %>
+              <%= link_to 'Bestify', question_response_path(q, r, response: {best: true}), data: {method: "patch"}, id: "response-id-#{r.id}"   %></li>
+            <% else %>
+              Best Answer
+            <% end %>
         </ul>
       <% end %>
   </ul>

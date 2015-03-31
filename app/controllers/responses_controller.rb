@@ -21,10 +21,15 @@ class ResponsesController < ApplicationController
   def update
     response = Response.find(params[:id])
 
-    binding.pry
-
+    if params[:response][:best]
+      Response.all.each do |r|
+        unless r == response
+          r.best = false
+          r.save
+        end
+      end
+    end
     response.update(response_params)
-    response.save
     redirect_to user_path(current_user)
   end
 
