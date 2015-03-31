@@ -20,6 +20,9 @@ class ResponsesController < ApplicationController
 
   def update
     response = Response.find(params[:id])
+
+    binding.pry
+
     response.update(response_params)
     response.save
     redirect_to user_path(current_user)
