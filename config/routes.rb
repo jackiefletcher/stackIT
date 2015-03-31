@@ -9,6 +9,17 @@ Rails.application.routes.draw do
   end
 
   resources :questions do
-      resources :responses
+    member do
+      post :vote
+    end
+
+    resources :responses do
+      member do
+        post :vote
+      end
+    end
   end
+
+
+
 end

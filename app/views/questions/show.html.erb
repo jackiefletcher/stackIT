@@ -5,7 +5,16 @@
   <% @question.responses.each do |response| %>
     <div class="well">
       <p><b>User <%= response.user.email %> says:</b></p>
-      <p><%= response.answer %></p>
+      <p>
+        <%= link_to vote_question_response_path(@question, response, vote: true), method: :post, id: "#{response.id}-upvote" do %>
+          <i class='glyphicon glyphicon-plus-sign'></i>
+        <% end %>
+        <%= response.total_votes %>
+        <%= link_to vote_question_response_path(@question, response, vote: false), method: :post, id: "#{response.id}-downvote" do %>
+          <i class='glyphicon glyphicon-minus-sign'></i>
+        <% end %>
+
+          <%= response.answer %></p>
     </div>
   <% end %>
 

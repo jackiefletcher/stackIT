@@ -20,9 +20,17 @@ class ResponsesController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def vote
+    response = Response.find(params[:id])
+    vote = Vote.create(voteable: response, vote: params[:vote], user_id: current_user.id)
+    redirect_to question_path(response.question)
+  end
+
   private
   def response_params
     params.require(:response).permit(:answer, :best)
   end
+
+
 
 end
