@@ -21,9 +21,15 @@ class ResponsesController < ApplicationController
   end
 
   def vote
-    response = Response.find(params[:id])
-    vote = Vote.create(voteable: response, vote: params[:vote], user_id: current_user.id)
-    redirect_to question_path(response.question)
+    @response = Response.find(params[:id])
+    @vote = Vote.create(voteable: @response, vote: params[:vote], user_id: current_user.id)
+    respond_to do |format|
+      format.html do
+        @vote.valid? ? flash[:notice] = 'Your vote was counted.' :  flash[:error] = 'You can only vote on a post once.'
+        redirect_to :back
+      end
+      format.js
+    end
   end
 
   private
