@@ -30,7 +30,11 @@ Motivation
 Authors
 ------
 
-Jackie Fletcher and Kathryn Carr
+Jackie Fletcher, Kathryn Carr and Jake Kaad
+
+Production
+--------
+<a href='https://young-sands-3090.herokuapp.com'>This is on Heroku</a>
 
 License
 -------
