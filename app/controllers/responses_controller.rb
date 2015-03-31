@@ -1,4 +1,6 @@
 class ResponsesController < ApplicationController
+  before_action :require_user, only: [:create, :update]
+
   def create
     question = Question.find(params[:question_id])
     response = question.responses.new(response_params)
@@ -14,8 +16,7 @@ class ResponsesController < ApplicationController
   def update
     response = Response.find(params[:id])
     response.update(response_params)
-    response.save()
-    binding.pry
+    response.save
     redirect_to user_path(current_user)
   end
 

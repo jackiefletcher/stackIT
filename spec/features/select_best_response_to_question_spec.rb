@@ -10,7 +10,8 @@ describe "the process of selecting a best response to a question" do
     response2 = FactoryGirl.create(:response, question_id: question_user.questions.first.id)
     sign_in_user(question_user)
     visit user_path(question_user)
-    click_on "response-id-#{response.id}"
+    click_on "response-id-#{response1.id}"
+    expect(response1.reload.best).to be_truthy
   end
 
 end

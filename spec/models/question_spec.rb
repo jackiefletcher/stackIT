@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Question do
     it { should validate_presence_of :ask }
     it { should have_many :responses }
-    it { should belong_to :user}
+    it { should belong_to :user }
 
     it "will have three responses when create with FactoryGirl" do
       question = FactoryGirl.create(:question_with_responses)
@@ -15,7 +15,9 @@ describe Question do
         question = FactoryGirl.create(:question_with_responses)
         question.responses[1].answer = "Changed it"
         question.responses[1].best = true
-        expect(question.bestFirst.first.answer).to(eq("Changed it"))
+        question.responses[1].save
+
+        expect(question.reload.responses.first.answer).to(eq("Changed it"))
       end
     end
 end

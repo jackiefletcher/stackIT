@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_action :require_user, only: [:new, :create]
+
   def index
     @questions = Question.all
     @question = Question.new

@@ -2,7 +2,7 @@
 
 <br>
 <h3>Answers</h3>
-  <% @question.bestFirst.each do |response| %>
+  <% @question.responses.each do |response| %>
     <div class="well">
       <p><b>User <%= response.user.email %> says:</b></p>
       <p><%= response.answer %></p>
