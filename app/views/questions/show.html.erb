@@ -6,7 +6,7 @@
   <%= render 'responses', question: @question %>
 </div>
 
-<%= form_for [@question, @response], class:"form-horizontal" do |f| %>
+<%= form_for [@question, @response], remote: true, class:"form-horizontal" do |f| %>
   <%= f.label :answer, class:"form-label" %>
   <%= f.text_field :answer, class:"form-control" %>
 <br>

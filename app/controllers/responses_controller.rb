@@ -2,15 +2,20 @@ class ResponsesController < ApplicationController
   before_action :require_user, only: [:create, :update]
 
   def create
-    question = Question.find(params[:question_id])
-    response = question.responses.new(response_params)
+    @question = Question.find(params[:question_id])
+    response = @question.responses.new(response_params)
     response.user_id = current_user.id
     if response.save
-      flash[:notice] = "Answer Successfully Added!"
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Answer Successfully Added!"
+        end
+        format.js
+      end
     else
       flash[:alert] = "There was a problem submitting your answer"
+      redirect_to :back
     end
-    redirect_to :back
   end
 
   def update
