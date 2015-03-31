@@ -34,6 +34,12 @@ FactoryGirl.define do
         create_list(:question, evaluator.questions_count, user: user)
       end
     end
-
   end
+
+  factory(:vote) do
+    vote(false)
+    user_id(2)
+  end
+
+
 end

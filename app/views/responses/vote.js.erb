@@ -1,0 +1,5 @@
+<% if @vote.valid? %>
+  $("#responses").html('<%=  j render "questions/responses", question: @response.question %>')
+<% else %>
+  alert('You can only vote once')
+<% end %>

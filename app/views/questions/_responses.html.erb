@@ -1,0 +1,9 @@
+<% if question.responses.any? %>
+  <% if question.responses.first.best %>
+    <i class='col-md-1 glyphicon glyphicon-ok'> Best</i>
+    <%= render question.responses.first, question: question %>
+  <% end %>
+  <% question.responses.voted.each do |response| %>
+    <%= render response, question: question %>
+  <% end %>
+<% end %>
