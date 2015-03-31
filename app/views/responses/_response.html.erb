@@ -1,0 +1,12 @@
+<div class="well">
+  <p><b>User <%= response.user.email %> says:</b></p>
+  <p>
+    <%= link_to vote_question_response_path(question, response, vote: true), method: :post, remote: true, id: "#{response.id}-upvote" do %>
+      <i class='glyphicon glyphicon-plus-sign'></i>
+    <% end %>
+    <span id="response_<%= response.id %>_votes"><%= response.total_votes %> </span>
+    <%= link_to vote_question_response_path(question, response, vote: false), method: :post, remote: true, id: "#{response.id}-downvote" do %>
+      <i class='glyphicon glyphicon-minus-sign'></i>
+    <% end %>
+    <%= response.answer %></p>
+</div>
