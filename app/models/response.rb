@@ -4,7 +4,9 @@ class Response < ActiveRecord::Base
   belongs_to :user
   has_many :votes, as: :voteable
   after_create :send_notification
+
   default_scope { order('best DESC')}
+  scope :voted,  -> { where(best: false).sort_by{|response| response.total_votes }.reverse }
 
   def send_notification
     UserMailer.response_notification(self.question.user).deliver_now
